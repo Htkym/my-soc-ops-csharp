@@ -3,6 +3,9 @@
 ## ✅ Mandatory Development Checklist
 Before committing, ensure:
 - [ ] **Lint**: Code follows C#/Razor conventions (implicit namespaces, nullable types)
+  - Remove unused variables (CS0219)
+  - Await all async calls (CS4014)
+  - No unreachable code (CS0162)
 - [ ] **Build**: `dotnet build` passes without warnings
 - [ ] **Test**: Changes tested locally via `dotnet run` (http://localhost:5166)
 
@@ -65,3 +68,14 @@ dotnet run                  # Dev server (http://localhost:5166)
 - **README**: Project setup & deployment info
 
 **Stack:** .NET 10.0 • Blazor WebAssembly • Custom CSS utilities (no npm) • Auto-deploy to GitHub Pages on `main` push
+
+## Linting Configuration
+
+**EditorConfig** (`.editorconfig`) enforces:
+- **Unused variables**: CS0219 (warning)
+- **Unused private members**: IDE0051 (warning)
+- **Unresolved async calls**: CS4014 (error) — must `await` async calls
+- **Private naming**: camelCase for private members/fields
+- **Code formatting**: IDE0055 (suggestion)
+
+Run `dotnet build` to validate. All warnings must be resolved before committing.
